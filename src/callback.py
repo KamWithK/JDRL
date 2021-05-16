@@ -13,7 +13,7 @@ class WandBCallback(BaseCallback):
         self.FIRST_STEP = False
 
     def on_first_step(self):
-        nodes = self.locals["infos"][0]["nodes"]
+        nodes = self.training_env.get_attr("BOUNDARIES")[0]
         self.path_x = []
         self.path_y = []
         self.fig = go.Figure()
