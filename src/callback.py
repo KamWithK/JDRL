@@ -14,7 +14,6 @@ class WandBCallback(BaseCallback):
 
     def _on_training_start(self) -> None:
         nodes = self.training_env.get_attr("BOUNDARIES")[0]
-        self.path_x, self.path_y = [], []
 
         self.fig = go.Figure()
         self.fig.add_scatter(x=nodes[:, 0, 2], y=nodes[:, 0, 0])
@@ -37,10 +36,7 @@ class WandBCallback(BaseCallback):
 
         path = self.fig.data[2]
         position = self.locals["infos"][0]["position"]
-        self.path_x.append(position[2])
-        self.path_y.append(position[0])
-        path.x = self.path_x
-        path.y = self.path_y
+        path.x, path.y = path.x + (position[2],), path.y + (position[0],)
         log_dict.update({"position": self.fig})
 
         # Log dictionary
