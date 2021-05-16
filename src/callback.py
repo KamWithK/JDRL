@@ -13,11 +13,11 @@ class WandBCallback(BaseCallback):
         wandb.init(project="jelly-drift-rl", entity="lionel-polanski", name="SAC Test", dir="..", mode="online")
 
     def _on_training_start(self) -> None:
-        nodes = self.training_env.get_attr("BOUNDARIES")[0]
+        boundaries = self.training_env.get_attr("BOUNDARIES")[0]
 
         self.fig = go.Figure()
-        self.fig.add_scatter(x=nodes[:, 0, 2], y=nodes[:, 0, 0])
-        self.fig.add_scatter(x=nodes[:, 1, 2], y=nodes[:, 1, 0])
+        self.fig.add_scatter(x=boundaries[:, 0, 2], y=boundaries[:, 0, 0])
+        self.fig.add_scatter(x=boundaries[:, 1, 2], y=boundaries[:, 1, 0])
         self.fig.add_scatter(x=[], y=[], name="path")
         self.fig.add_scatter(x=[], y=[], name="nodes", mode="markers")
         self.fig.update_yaxes(
