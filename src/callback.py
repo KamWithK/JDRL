@@ -4,13 +4,13 @@ from stable_baselines3.common.callbacks import BaseCallback
 import plotly.graph_objects as go
 
 class WandBCallback(BaseCallback):
-    def __init__(self, verbose: int=True, frequency=1000, ignore=["train/n_updates"]):
+    def __init__(self, verbose: int=True, frequency=1000, ignore=["train/n_updates"], mode="online"):
         super().__init__(verbose=verbose)
         
         self.FREQUENCY = frequency
         self.IGNORE = ignore
 
-        wandb.init(project="jelly-drift-rl", entity="lionel-polanski", name="SAC Test", dir="..", mode="online")
+        wandb.init(project="jelly-drift-rl", entity="lionel-polanski", name="SAC Test", dir="..", mode=mode)
 
     def _on_training_start(self) -> None:
         boundaries = self.training_env.get_attr("BOUNDARIES")[0]
