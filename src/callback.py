@@ -13,7 +13,7 @@ class WandBCallback(BaseCallback):
         wandb.init(project="jelly-drift-rl", entity="lionel-polanski", name="SAC Test", dir="..", mode=mode)
 
     def _on_training_start(self) -> None:
-        boundaries = self.training_env.get_attr("BOUNDARIES")[0]
+        boundaries = self.training_env.get_attr("NODES")[0].BOUNDARIES
 
         self.fig = go.Figure()
         self.fig.add_scatter(x=boundaries[:, 0, 2], y=boundaries[:, 0, 0])
