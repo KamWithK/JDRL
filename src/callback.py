@@ -18,7 +18,7 @@ class WandBCallback(BaseCallback):
         self.fig = go.Figure()
         self.fig.add_scatter(x=boundaries[:, 0, 2], y=boundaries[:, 0, 0])
         self.fig.add_scatter(x=boundaries[:, 1, 2], y=boundaries[:, 1, 0])
-        self.fig.add_scatter(x=[], y=[], name="path")
+        self.fig.add_scatter(x=[], y=[], name="path", mode="markers")
         self.fig.add_scatter(x=[], y=[], name="nodes", mode="markers")
         self.fig.update_yaxes(
             scaleanchor = "x",
@@ -34,11 +34,11 @@ class WandBCallback(BaseCallback):
         log_dict.update(self.logger.get_log_dict())
         [log_dict.pop(key) for key in self.IGNORE if key in log_dict.keys()]
 
-        path = self.fig.data[2]
-        position = self.locals["infos"][0]["position"]
-        path.x = (position[2],) if self.locals["done"][0] else path.x + (position[2],)
-        path.y = (position[0],) if self.locals["done"][0] else path.y + (position[0],)
-        log_dict.update({"position": self.fig})
+        if self.locals["done"][0]:
+            path = self.fig.data[2]
+            position = self.locals["infos"][0]["position"]
+            path.x, path.y = path.x + (position[2],), path.y + (position[0],)
+            log_dict.update({"position": self.fig})
 
         # Log dictionary
         if log_dict: wandb.log(log_dict, commit=commit)
