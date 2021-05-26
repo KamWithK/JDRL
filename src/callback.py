@@ -36,7 +36,8 @@ class WandBCallback(BaseCallback):
 
         path = self.fig.data[2]
         position = self.locals["infos"][0]["position"]
-        path.x, path.y = path.x + (position[2],), path.y + (position[0],)
+        path.x = (position[2],) if self.locals["done"][0] else path.x + (position[2],)
+        path.y = (position[0],) if self.locals["done"][0] else path.y + (position[0],)
         log_dict.update({"position": self.fig})
 
         # Log dictionary
