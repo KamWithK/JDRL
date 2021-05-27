@@ -6,9 +6,9 @@ hydra:
     name: ${parse_string:${run.name}}
 
 defaults:
-  - defaults/nodes
   - defaults/environment
+  - defaults/nodes
   - defaults/callbacks
   - defaults/model
   - defaults/run
-  - runs/base_run # specify run here
+  - runs/base_no_graphics # specify run here

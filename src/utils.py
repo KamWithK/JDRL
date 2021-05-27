@@ -1,7 +1,7 @@
 import stable_baselines3
 
 from gym.wrappers.flatten_observation import FlattenObservation
-from gym_jd.envs.action_wrapper import FlattenAction
+from gym_jd.utils.action_wrapper import FlattenAction
 from gym.wrappers.rescale_action import RescaleAction
 
 def wrap_continuous_env(env):

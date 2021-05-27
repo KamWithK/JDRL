@@ -1,4 +1,6 @@
-# @package nodes
+# @package environment.env_kwargs.nodes
+_target_: gym_jd.utils.nodes.NodeFinder
+
 nodes_to_check: 3
 node_threshold: 7.3
 
