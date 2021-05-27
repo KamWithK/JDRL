@@ -1,4 +1,3 @@
-import gym_jd
 import stable_baselines3
 
 from gym_jd.envs.action_wrapper import FlattenAction
@@ -12,7 +11,6 @@ from callback import WandBCallback
 CONTINUOUS = True
 MODEL_TYPE = "SAC"
 NUM_ENVS = 3 if MODEL_TYPE != "SAC" else 1
-# LOAD, MAX_TIMESTEPS = False, 1000000
 LOAD, SAVE = False, False
 MAX_TIMESTEPS = 1000000 if SAVE else 10000
 
@@ -21,13 +19,20 @@ SAVE_PATHS = {
     "final": f"models/final/{MODEL_TYPE.lower()}"
 }
 
+GRAPHICS, RESOLUTION = True, 360
+
 def wrap_env(env):
     env = FlattenObservation(env)
     env = FlattenAction(env, continuous=CONTINUOUS)
     return env if not CONTINUOUS else RescaleAction(env, -1, 1)
 
 if __name__ == "__main__":
-    env = make_vec_env("jd-v0", n_envs=NUM_ENVS, wrapper_class=wrap_env, env_kwargs={"jd_path": "../Game/Jelly Drift.exe", "continuous": CONTINUOUS})
+    env = make_vec_env("jd-v0", n_envs=NUM_ENVS, wrapper_class=wrap_env, env_kwargs={
+        "jd_path": "../Game/Jelly Drift.exe",
+        "graphics": GRAPHICS,
+        "resolution": RESOLUTION,
+        "continuous": CONTINUOUS
+    })
 
     checkpoint_callback = CheckpointCallback(save_freq=10000, save_path=SAVE_PATHS["training"], name_prefix=SAVE_PATHS["training_prefix"]) if SAVE else None
     wandb_callback = WandBCallback()
