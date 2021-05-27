@@ -13,3 +13,8 @@ To install and use `environment.yml` do the following:
 4. Once satisfied activate the new environment through `conda activate jd_rl` and (optionally) deactivate/close afterwards with `conda deactivate`
 
 *For an update the above isn't necessary - simply run `conda update --all` for packages and `conda update -n base -c defaults conda` for conda itself!*
+
+## Config
+This project has been set up using Hydra.
+To start a run please create a run config file under `config/runs/` and specify it as a command line argument - `python src/main.py ++runs=base_run`.
+For reproducibility avoid modifying the default configuration and instead override it within the run config file.

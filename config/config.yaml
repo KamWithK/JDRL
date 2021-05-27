@@ -11,4 +11,4 @@ defaults:
   - defaults/callbacks
   - defaults/model
   - defaults/run
-  - runs/base_no_graphics # specify run here
+  - runs/base_run # use +runs=test as command line argument
