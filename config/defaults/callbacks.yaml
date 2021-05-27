@@ -12,4 +12,5 @@ callbacks:
       frequency: 1000
       mode: ${run.wandb_mode}
       name: ${run.name}
+      resume: ${run.load}
       verbose: false
