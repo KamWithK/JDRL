@@ -1,0 +1,13 @@
+# @package environment
+_target_: stable_baselines3.common.env_util.make_vec_env
+env_id: "jd-v0"
+n_envs: 1
+
+wrapper_class: ${get_wrapper_func:${environment.env_kwargs.continuous}}
+
+env_kwargs:
+  jd_path: ${original_dir:"/../Game/Jelly Drift.exe"}
+  continuous: true
+
+  graphics: true
+  resolution: 360

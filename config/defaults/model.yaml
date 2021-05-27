@@ -1,0 +1,8 @@
+# @package model
+_target_: utils.create_model
+
+type: "SAC"
+policy: "MlpPolicy"
+load: ${run.load}
+save_path: "final_model"
+verbose: false

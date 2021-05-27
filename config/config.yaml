@@ -1,0 +1,14 @@
+hydra:
+  run:
+    dir: outputs/${hydra.job.name}
+  output_subdir: "config"
+  job:
+    name: ${parse_string:${run.name}}
+
+defaults:
+  - defaults/nodes
+  - defaults/environment
+  - defaults/callbacks
+  - defaults/model
+  - defaults/run
+  - runs/base_run # specify run here

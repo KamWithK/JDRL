@@ -1,0 +1,8 @@
+# @package nodes
+nodes_to_check: 3
+node_threshold: 7.3
+
+previous_visible_nodes: 3
+next_visible_nodes: 5
+previous_visible_frequency: 1
+next_visible_frequency: 1

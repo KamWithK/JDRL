@@ -20,3 +20,4 @@ dependencies:
   - pip:
     - git+https://github.com/EuclideanEncabulator/gym-jd
     - stable-baselines3[extra]
+    - hydra-core --pre

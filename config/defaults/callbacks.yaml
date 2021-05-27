@@ -1,0 +1,15 @@
+# @package callbacks
+callbacks:
+  -
+      _target_: stable_baselines3.common.callbacks.CheckpointCallback
+
+      save_freq: 10000
+      save_path: "checkpoints"
+      name_prefix: ""
+
+  -
+      _target_: callback.WandBCallback
+      frequency: 1000
+      mode: ${run.wandb_mode}
+      name: ${run.name}
+      verbose: false
