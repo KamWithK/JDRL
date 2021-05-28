@@ -8,6 +8,12 @@ wrapper_class: ${get_wrapper_func:${environment.env_kwargs.continuous}}
 env_kwargs:
   jd_path: ${original_dir:"/../Game/Jelly Drift.exe"}
   continuous: true
+  reward_func:
+    _target_: gym_jd.utils.rewards.Reward
+
+    penetration: "penetrations"
+    distance: ["distance", 10]
+    surface: ["surface", 0.2]
 
   graphics: true
   resolution: 360
