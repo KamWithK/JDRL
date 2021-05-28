@@ -1,7 +1,5 @@
 # @package run
-load: false
+load: true
 save: true
-wandb_mode: "disabled"
-resume: false
 max_timesteps: 1000000
   

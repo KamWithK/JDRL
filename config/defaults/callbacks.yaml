@@ -10,7 +10,7 @@ callbacks:
   -
       _target_: callback.WandBCallback
       frequency: 1000
-      mode: ${run.wandb_mode}
+      mode: ${wandb_mode:${run.save}}
       name: ${run.name}
       resume: ${run.load}
       verbose: false

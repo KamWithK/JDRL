@@ -11,4 +11,4 @@ defaults:
   - defaults/callbacks
   - defaults/model
   - defaults/run
-  - runs/base_run # use +runs=test as command line argument
+  - runs/test_run # use +runs=test as command line argument

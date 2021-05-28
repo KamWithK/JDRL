@@ -1,4 +1,0 @@
-# @package _global_
-run:
-  name: "Base Run SAC"
-  wandb_mode: "online"

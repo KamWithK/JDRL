@@ -1,0 +1,5 @@
+# @package _global_
+run:
+  name: "Test Run"
+  save: false
+  max_timesteps: 1000

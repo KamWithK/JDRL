@@ -16,5 +16,5 @@ To install and use `environment.yml` do the following:
 
 ## Config
 This project has been set up using Hydra.
-To start a run please create a run config file under `config/runs/` and specify it as a command line argument - `python src/main.py ++runs=base_run`.
+To start a run please create a run config file under `config/runs/` and specify it as a command line argument - `python src/main.py ++runs=test_run`.
 For reproducibility avoid modifying the default configuration and instead override it within the run config file.
