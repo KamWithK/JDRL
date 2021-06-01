@@ -16,6 +16,10 @@ class WandBCallback(BaseCallback):
     def _on_training_start(self) -> None:
         boundaries = self.training_env.get_attr("NODES")[0].BOUNDARIES
 
+        # Log Hyperparameters
+        wandb.config = {"model": self.model.__class__.__name__, "num_envs": self.model.n_envs}
+
+        # Figure scaffold
         self.fig = go.Figure()
         self.fig.add_scatter(x=boundaries[:, 0, 2], y=boundaries[:, 0, 0])
         self.fig.add_scatter(x=boundaries[:, 1, 2], y=boundaries[:, 1, 0])
@@ -31,7 +35,7 @@ class WandBCallback(BaseCallback):
         commit = self.num_timesteps % self.FREQUENCY
 
         # Combine all metrics and values to be logged
-        log_dict = {"train/reward": self.locals["reward"][0]} if self.locals["reward"] != None else {}
+        log_dict = {"train/reward": self.locals["infos"][0]["rewards"] | {"total_reward": reward}} if (reward := self.locals["reward"]) != None else {}
         log_dict.update(self.logger.get_log_dict())
         [log_dict.pop(key) for key in self.IGNORE if key in log_dict.keys()]
 
